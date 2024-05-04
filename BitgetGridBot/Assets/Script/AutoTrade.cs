@@ -194,7 +194,7 @@ public class AutoTrade : MonoBehaviour
    
         yield return StartCoroutine(Rf_Update_OpenLong());    // 미체결 오픈매수 주문 업데이트
         yield return StartCoroutine(Rf_Update_CloseLong());   // 미체결된 매도주문 업데이트 + 체결된 매도주문 확인
-        yield return StartCoroutine(Rf_Range_CloseLong()); // 가격 이격도가 깊은 미체결 매도 주문 취소 + 신규 매도주문 생성
+        yield return StartCoroutine(Rf_Range_CloseLong());    // 가격 이격도가 깊은 미체결 매도 주문 취소 + 신규 매도주문 생성
 
         while (true)
         {
@@ -205,13 +205,13 @@ public class AutoTrade : MonoBehaviour
 
             if (closeOrder) continue;
             orderPosting = true;
-            yield return StartCoroutine(Rf_Start_OpenLong());   // 신규 매수주문 업데이트
+            yield return StartCoroutine(Rf_Start_OpenLong());       // 신규 매수주문 업데이트
 
-            yield return StartCoroutine(Rf_Range_OpenLong());  // 주문과 현재 가격 이격이 깊을 경우 주문취소
-            yield return StartCoroutine(Rf_Update_OpenLong());    // 미체결 오픈매수 주문 업데이트
+            yield return StartCoroutine(Rf_Range_OpenLong());       // 주문과 현재 가격 이격이 깊을 경우 주문취소
+            yield return StartCoroutine(Rf_Update_OpenLong());      // 미체결 오픈매수 주문 업데이트
 
-            yield return StartCoroutine(Rf_Update_CloseLong());   // 미체결된 매도주문 업데이트 + 체결된 매도주문 확인
-            yield return StartCoroutine(Rf_Range_CloseLong()); // 가격 이격도가 깊은 미체결 매도 주문 취소 + 신규 매도주문 생성
+            yield return StartCoroutine(Rf_Update_CloseLong());     // 미체결된 매도주문 업데이트 + 체결된 매도주문 확인
+            yield return StartCoroutine(Rf_Range_CloseLong());      // 가격 이격도가 깊은 미체결 매도 주문 취소 + 신규 매도주문 생성
 
             if (closePosition)
                 yield return StartCoroutine(Rf_ClosePosition());    // 체결된 매수주문 규모 감소
@@ -495,7 +495,7 @@ public class AutoTrade : MonoBehaviour
                 for (int i = 0; i < count; i++)
                 {
                     // 체결된 매수주문의 페어 신규 매도주문 생성 - 시장가 정리
-                    int size = int.Parse(orders[i].size);
+                    int size = int.Parse(orders[i].size);   
                     Order order = new Order("cmt_btcusdt", orders[i].client_oid + "#" + SettingAPI.GET_CLIENT_OID(12), size, "3", "2", "1");
                     order.SET_PRICE(((int)BitgetAPI.curPrice_BTCUSDT).ToString());
 

@@ -48,7 +48,7 @@ public class BackTextSystem : MonoBehaviour
                 if (!check) BackTest.ADD_OREDER(order);
             }
             BackTest.UPDATE_BACKTEST_FRAME();
-            //BackTest.UPDATE_CLOSING_POSITION();
+            BackTest.UPDATE_CLOSING_POSITION();
             curPrice = BackTest.GET_BTCUSDT_PRICE();
 
             BackTest.UPDATE_CLOSING_POSITION_DEPTH();
@@ -69,7 +69,11 @@ public class BackTextSystem : MonoBehaviour
             float gap = BackTest.orderContract[i].GET_GAP_PRICE();
             //Debug.Log("start price:" + start + ", exite price:" + exite + ", gap:" + (exite - start) + ", price:" + gap);
         }
-        Debug.Log("position size:" + BackTest.cmtBTCUSDT.size + ", avg_price:" + BackTest.cmtBTCUSDT.average_price + ", contract:" + BackTest.orderContract.Count + ", payoff:" + BackTest.cmtBTCUSDT.payoff + ", unreal_pnl:" + BackTest.cmtBTCUSDT.GET_UNREALIZE_PNL(BackTest.btc_ustd));
+        Debug.Log("position size:" + BackTest.cmtBTCUSDT.size + 
+            ", avg_price:" + BackTest.cmtBTCUSDT.average_price + 
+            ", contract:" + BackTest.orderContract.Count + 
+            ", payoff:" + BackTest.cmtBTCUSDT.payoff + 
+            ", unreal_pnl:" + BackTest.cmtBTCUSDT.GET_UNREALIZE_PNL(BackTest.btc_ustd));
       
         used = false;
     }
